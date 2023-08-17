@@ -36,7 +36,6 @@ getBrandData() async{
             ));      
     });
 
-    print("BRAND Length ${brandItems.length}");
   }
 
 @override
@@ -56,9 +55,9 @@ getBrandData() async{
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 20.0, top: 20),
               child: Text("Unleash Your Online Success. Say goodbye to lackluster results and hello to a world of increased website traffic, soaring conversions, and unprecedented growth. With BuzzBoost Pro, you'll harness the power of cutting-edge SEO techniques and expert CRO str",
-              style: Theme.of(context).textTheme.bodyMedium,),
+              style: Theme.of(context).textTheme.bodyLarge,),
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -82,7 +81,9 @@ getBrandData() async{
                       ),
                       trailing: InkWell(
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductScreen(image: brandItems[index].imageDefault,)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductScreen(
+                            image: brandItems[index].imageDefault, categoryName: brandItems[index].categoryName,
+                            createdAt: brandItems[index].createdAt, title: brandItems[index].title,keywords: brandItems[index].keywords,)));
                         },
                         child: Icon(Icons.arrow_forward_ios_outlined)),
                     ),

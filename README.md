@@ -12,7 +12,7 @@ The basic steps you need to follow to get started with this project.
 
 **Step 1: Clone this repo**
 ```
-git clone https://github.com/mervinkogei/Maat-search.git
+git clone https://github.com/mervinkogei/TheBrand
 ```
 
 **Step 2: Run these commands in the project directory to download the required packages**

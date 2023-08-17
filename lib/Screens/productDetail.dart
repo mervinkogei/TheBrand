@@ -1,17 +1,34 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:thebrand/Components/custom_button.dart';
 import 'package:thebrand/Utils/custom_theme.dart';
 
 class ProductScreen extends StatefulWidget {
   final String? image;
-  ProductScreen({Key? key, this.image}) : super(key: key);
+  final String? title;
+  final String? categoryName;
+  final String? keywords;
+  final DateTime? createdAt;
+  ProductScreen({Key? key, this.image, this.categoryName, this.createdAt, this.keywords, this.title}) : super(key: key);
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  String dateFormat ="";
+
+  @override
+  void initState() {
+    DateTime now = DateTime.now();
+String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.parse("${widget.createdAt}"));
+print("Format Date: $formattedDate");
+setState(() {
+  dateFormat = formattedDate;
+});
+    super.initState();
+  }
   bool addButtonLead = false;
  _handleAccept() {
  Navigator.of(context).pop(true); // dialog returns true
@@ -61,18 +78,30 @@ setState(() {
                     child: DefaultTextStyle(style: Theme.of(context).textTheme.headlineLarge!, child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children:  [
-                        const Padding(padding: EdgeInsets.only(top: 22),
-                        child: Text("Title"),),
-                        Padding(padding: const EdgeInsets.symmetric(vertical: 20),
+                        SizedBox(height: 22,),
+                        const Divider(color: CustomTheme.grey, height: 2, thickness: 2,),
+                        Padding(padding: const EdgeInsets.symmetric(vertical: 10),                        
+                    child: Container(
+                      child: Row(
+                        children: [
+                      const Text("Title: ")  , Expanded(child: Text("${widget.title}", style: const TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.normal,),))
+                      ]),
+                    ),),
+                        Padding(padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Row(children: [
-                    Text("MRP: ")  , Text("\$Price")
+                    const Text("Category: ")  , Expanded(child: Text("${widget.categoryName}", style: const TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.normal,),))
+                    ]),),
+                    Padding(padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Row(children: [
+                    const Text("Keywords: ")  , Text("${widget.keywords}", style: const TextStyle(color: Colors.blueGrey, fontSize: 20, fontWeight: FontWeight.normal,),)
                     ]),),
 
-                    CustomButton(onPressed: (){}, text: "Add to cart", isLoading: addButtonLead,),
-                    Padding(padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text("About the item", style: Theme.of(context).textTheme.headlineMedium,),),
-                    Padding(padding: EdgeInsets.only(bottom: 20),
-                    child: Text("The item description is a shoe with a lot of classy and its a cost-friendly. Its availble from baby to adult sizes.", style: Theme.of(context).textTheme.bodySmall,),)
+                    // CustomButton(onPressed: (){}, text: "Add to cart", isLoading: addButtonLead,),
+                    Padding(padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text("More Details:", style: Theme.of(context).textTheme.headlineMedium,),),
+                    Padding(padding: const EdgeInsets.only(bottom: 20),
+                    child: Text("${widget.title}", style: Theme.of(context).textTheme.bodyLarge,),),
+                    CustomButton(onPressed: (){}, text: "Created at: $dateFormat", isLoading: addButtonLead,),
                       ],
                     )),),
                     

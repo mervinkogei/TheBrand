@@ -2,15 +2,26 @@
 
 A new Flutter project.
 
-## Getting Started
+# Project Setup
 
-This project is a starting point for a Flutter application.
+The basic steps you need to follow to get started with this project.
 
-A few resources to get you started if this is your first Flutter project:
+**Requirements :**   
+- [Flutter](https://flutter.dev/docs/get-started/install) and [Dart](https://dart.dev/get-dart) SDK
+- [git](https://git-scm.com/downloads)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+**Step 1: Clone this repo**
+```
+git clone https://github.com/mervinkogei/Maat-search.git
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Step 2: Run these commands in the project directory to download the required packages**
+```
+flutter clean
+flutter pub get
+```
+
+**Step 3: To run the project in release**
+```
+flutter run --release
+```
